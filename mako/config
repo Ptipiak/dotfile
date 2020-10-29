@@ -1,0 +1,17 @@
+font=Noto Sans 12
+background-color=#222222
+progress-color=#444444
+max-visible=3
+default-timeout=6000
+anchor=bottom-left
+group-by=app-name,app-icon
+border-size=0
+border-radius=6
+padding=10
+margin=5
+
+[app-name=Spotify]
+invisible=1
+
+[urgency=high]
+ignore-timeout=1

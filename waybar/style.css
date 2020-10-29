@@ -1,0 +1,153 @@
+* {
+    border: none;
+    border-radius: 0;
+	font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 13px;
+    min-height: 0;
+}
+
+#waybar {
+    background-color: rgba(57,62,70, 0.5);
+    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    color: #eeeeee;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+button,
+#clock,
+#battery,
+#cpu,
+#memory,
+#network,
+#pulseaudio,
+#custom-spotify,
+#tray,
+#mode,
+#idle_inhibitor,
+#window,
+#mpd {
+    padding: 0 10px;
+    margin: 0 4px;
+    color: #eeeeee; 
+	border-bottom: 3px solid transparent;
+}
+
+#workspaces button {
+	margin: inherit;
+    background-color: transparent;
+}
+
+#workspaces button:hover {
+    background: rgba(0, 0, 0, 0.2);
+    box-shadow: inherit;
+    border-bottom: 3px solid #ffffff;
+}
+
+#workspaces button.focused {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+#clock {
+	font-size: 16px;
+}
+
+#battery {
+	color: #222831;
+    background-color: #3fc5f0;
+}
+
+#battery.charging {
+    background-color: #c3f584;
+}
+
+@keyframes blink {
+    to {
+        background-color: #eeeeee;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #eeeeee;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+label:focus {
+    background-color: #000000;
+}
+
+#cpu {
+	color: #222831;
+    background-color: #2ecc71;
+}
+
+#memory {
+    background-color: #9b59b6;
+}
+
+#backlight {
+    background-color: #90b1b1;
+}
+
+#network {
+    background-color: #2980b9;
+}
+
+#network.disconnected {
+    background-color: #f53c3c;
+}
+
+#pulseaudio {
+	color: #222831;
+    background-color: #f1c40f;
+}
+
+#pulseaudio.muted {
+    background-color: rgba(241,196,15,0.5);
+    color: #222831;
+}
+
+#custom-spotify {
+	color: #eeeeee;
+    background-color: transparent; 
+	border-bottom: 3px solid transparent;
+	margin: inherit;
+}
+
+#custom-spotify.playing {
+	color: #eeeeee;
+    background-color: #66cc99;
+	border-bottom: 3px solid #ffffff;
+}
+
+#custom-spotify.paused {
+	color: #eeeeee;
+}
+
+#tray {
+    background-color: #2980b9;
+}
+
+#idle_inhibitor {
+    background-color: #2d3436;
+}
+
+#idle_inhibitor.activated {
+    background-color: #ecf0f1;
+    color: #2d3436;
+}
