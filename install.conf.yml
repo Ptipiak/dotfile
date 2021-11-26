@@ -1,0 +1,6 @@
+- link:
+      ~/.config/nvim: 
+            path: ./nvim
+            create: true
+- shell:
+    - ["nvim +PlugUpdate +PlugClean! +qa", Installing and updating plugins]
