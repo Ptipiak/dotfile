@@ -1,183 +1,143 @@
-call plug#begin('~/.vim/plugged')
-	
-	" Themes and colors
-	Plug 'mhartington/oceanic-next'
-	Plug 'sainnhe/sonokai'
-	Plug 'ap/vim-css-color'
+"                                    ________
+"                                  |\\#######\
+"                                  |#\\#######\
+"                                  |##\\#######\
+"                                  |###\\#######\
+"                                  #####\\#######\
+"                         _______,#######|\#######\
+"                         \W############W  \#######\
+"                          \W##########W    \#######\
+"                           '#########'      \#######\
+"                              ¯¯¯¯¯          ¯¯¯¯¯¯¯¯
+"
+"       Personal vim configuration of Raphael Beck-Protoy 
+"       inspired from Jess Archer <jess@jessarcher.com>
 
-	" UI
-	Plug 'itchyny/lightline.vim' " Better status bar addons
-	Plug 'tpope/vim-fugitive' " Git addons
-	Plug 'tpope/vim-obsession' " Better mksession for vim
-	Plug 'tpope/vim-commentary' " Commentary on motions 
-	Plug 'romainl/vim-qf' " Tame the quickfix window
-
-	" Languages
-	Plug 'neoclide/coc.nvim', {'branch': 'release'}         " Autocomplete
-	Plug 'sheerun/vim-polyglot'         " Syntax highlighting
-
-call plug#end()
-
-""""""""""""""""""""""""""""""""""""""""
+"--------------------------------------------------------------------------
 " General settings
-""""""""""""""""""""""""""""""""""""""""
-set encoding=utf-8
-" Enable syntax highlighting
-syntax on
-" Enable file type
-filetype plugin indent on
-" Set the font to Hac Nerd Font mono with 12
-set guifont=Hack\ Nerd\ Font\ Mono\ \12 
-set t_Co=256
-" Auto reload a file when it is changer from the outside
-set autoread
-set nobackup
-" Hidde buffer instead of closing them
-set hidden
-" Set wildmode for auto completion
-set wildmenu
-" Completion behaviour
-set wildmode=longest:full,full
+"--------------------------------------------------------------------------
 
-""""""""""""""""""""""""""""""""""""""""
-" Indentation option 
-""""""""""""""""""""""""""""""""""""""""
-
-" Cause I like a full tab
-set tabstop=2
-" The number of spaces inserted/removed when using < or >
-set shiftwidth=2
-" The number of spaces inserted when you press tab.
-" -1 means the same value as shiftwidth
-set softtabstop=-1
-" Insert spaces instead of tabs
+set expandtab
+set shiftwidth=4
+set tabstop=4
 set noexpandtab
-" Set basic indenting (i.e. copy the indentation of the previous line)
-" When filetype detection didn't find a fancy indentation scheme
-set nosmartindent
-
-""""""""""""""""""""""""""""""""""""""""
-" User Interface
-""""""""""""""""""""""""""""""""""""""""
-
-" Set the minimal amount of line under/above the cursor
-" to 5
-set scrolloff=2
-" Show a marker underneath the cursor line
-set cursorline
-" Show the command to be executed
-set showcmd
-" nu: Show number; rnu: Relative number lines
-set nu
-" Always show status line
-set laststatus=2
-" Display whitespace characters
-set list
-" Tab character
-set listchars=tab:>─,eol:¬,trail:\ ,nbsp:¤
-" Vertical character
-set fillchars=vert:│
-" Briefly show matching braces, parens, etc
-set showmatch
-" Enable line wrapping
-set nowrap
-
-" ColorSheme
+set hidden
+set signcolumn=yes:2
+set relativenumber
+set number
 set termguicolors
-let g:sonokai_style = 'andromeda'
-let g:sonokai_enable_italic = 1
-let g:sonokai_disable_italic_comment = 1
-colorscheme sonokai 
-
-" netrw params
-let g:netrw_banner = 0
-let g:netrw_browse_split = 0
-let g:netrw_altv = 1 
-let g:netrw_liststyle = 1 
-let g:netrw_sort_by = "extend"
-
-" Lightline params
-let g:lightline = {
-\	'colorscheme': 'sonokai',
-\	'active': {
-\		'left': [
-\			[ 'mode', 'paste' ],
-\			['gitbranch', 'readonly', 'filename', 'modified' ] 
-\		]
-\	},
-\	'component_function': {
-\		'gitbranch': 'FugitiveHead',
-\       'filename': 'LightlineFilename'
-\	}
-\}
-
-" Allow lightline to display the full path instead of juste the filename
-function! LightlineFilename()
-	return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-		\ &filetype ==# 'unite' ? unite#get_status_string() :
-		\ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-		\ expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-endfunction
-
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
-
-""""""""""""""""""""""""""""""""""""""""
-" Search options 
-""""""""""""""""""""""""""""""""""""""""
-
-" Ignore case unless an uppercase is specified in the pattern
+set undofile
+set spell
+set title
+set ignorecase
 set smartcase
-
-"Move cursor to the matched string
 set incsearch
+set wildmode=longest:full,full
+set nowrap
+set showmatch
+set list
+set listchars=tab:›–,eol:¬,trail:¤
+set mouse=a
+set scrolloff=8
+set sidescrolloff=8
+set nojoinspaces
+set splitright
+set splitbelow
+" set clipboard=unnamedplus
+set confirm
+set exrc
+" set backup
+" set backupdir=~/.local/share/nvim/backup//
+set updatetime=300 " Reduce time for highlighting other references
+set redrawtime=10000 " Allow more time for loading syntax on large files
 
-""""""""""""""""""""""""""""""""""""""""
-" Plugins params 
-""""""""""""""""""""""""""""""""""""""""
+"--------------------------------------------------------------------------
+" Key maps
+"--------------------------------------------------------------------------
 
-" CoC params
-let g:coc_global_extensions = [
-\]
+let mapleader = "\<space>"
 
-" File specific whitespace params
-autocmd FileType yaml setlocal tabstop=4 softtabstop=2 shiftwidth=2 smartindent noexpandtab 
+nmap <leader>ve :edit ~/.config/nvim/init.vim<cr>
+nmap <leader>vc :edit ~/.config/nvim/coc-settings.json<cr>
+nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
 
-" Commentary plugin
+nmap <leader>k :nohlsearch<CR>
 
-""""""""""""""""""""""""""""""""""""""""
-" Mapping
-""""""""""""""""""""""""""""""""""""""""
-" Adding command to hide nu and rnu and also list
-nnoremap <F3> :set list!<CR>
-nnoremap <F2> :set nu!<CR>
-nnoremap <A-h> :-tabmove<CR>
-nnoremap <A-l> :+tabmove<CR>
-" Select completion using tab and shift tab to select completion 
-inoremap <expr> <tab> pumvisible() ? "\<C-n>" : "\<tab>"
-inoremap <expr> <s-tab> pumvisible() ? "\<C-p>" : "\<s-tab>"
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocActionAsync('doHover')
-  endif
-endfunction
+" Allow gf to open non-existent files
+map gf :edit <cfile><cr>
 
+" Quicker switching between windows
+nmap <silent> <C-h> <C-w>h
+nmap <silent> <C-j> <C-w>j
+nmap <silent> <C-k> <C-w>k
+nmap <silent> <C-l> <C-w>l
 
-""""""""""""""""""""""""""""""""""""""""
-" Utils script 
-""""""""""""""""""""""""""""""""""""""""
-function! SaveWithTS()
-    let 
-    autocmd BufWritePre *.txt :$put =strftime('%Y-%m-%d %T')
-endfunction
+" Reselect visual selection after indenting
+vnoremap < <gv
+vnoremap > >gv
+
+" Maintain the cursor position when yanking a visual selection
+" http://ddrscott.github.io/blog/2016/yank-without-jank/
+vnoremap y myy`y
+vnoremap Y myY`y
+
+" When text is wrapped, move by terminal rows, not lines, unless a count is provided
+noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
+noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
+
+" Paste replace visual selection without copying it
+vnoremap <leader>p "_dP
+
+" Make Y behave like the other capitals
+nnoremap Y y$
+
+" Keep it centered
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" Open the current file in the default program (not working on WSL obvi)
+" nmap <leader>x :!xdg-open %<cr><cr>
+
+" Quicky escape to normal mode
+imap jj <esc>
+
+" Easy insertion of a trailing ; or , from insert mode
+imap ;; <Esc>A;<Esc>
+imap ,, <Esc>A,<Esc>
+
+cmap w!! %!sudo tee > /dev/null %
+
+"--------------------------------------------------------------------------
+" Plugins
+"--------------------------------------------------------------------------
+
+" Auto pull and install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+	endif
+
+call plug#begin('~/.local/share/nvim/plugged')
+	source ~/.config/nvim/plugins/colorthemes.vim 
+	source ~/.config/nvim/plugins/coc.vim 
+	source ~/.config/nvim/plugins/lightline.vim 
+	source ~/.config/nvim/plugins/commentary.vim 
+	source ~/.config/nvim/plugins/surround.vim 
+	source ~/.config/nvim/plugins/floaterm.vim 
+	source ~/.config/nvim/plugins/python.vim 
+call plug#end()
+doautocmd User PlugLoaded
+
+"--------------------------------------------------------------------------
+" Miscellaneous
+"--------------------------------------------------------------------------
+
+augroup FileTypeOverrides
+    autocmd!
+    " Use '//' instead of '/* */' comments
+    autocmd FileType php setlocal commentstring=//%s
+	autocmd FileType yaml setlocal tabstop=4 softtabstop=2 shiftwidth=2 smartindent noexpandtab
+    autocmd TermOpen * setlocal nospell
+augroup END
