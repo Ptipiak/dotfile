@@ -1,30 +1,31 @@
-"                                    ________
-"                                  |\\#######\
-"                                  |#\\#######\
-"                                  |##\\#######\
-"                                  |###\\#######\
-"                                  #####\\#######\
-"                         _______,#######|\#######\
-"                         \W############W  \#######\
-"                          \W##########W    \#######\
-"                           '#########'      \#######\
-"                              ¯¯¯¯¯          ¯¯¯¯¯¯¯¯
+"																		 ________
+"																	 |\\#######\
+"																	 |#\\#######\
+"																	 |##\\#######\
+"																	 |###\\#######\
+"																	 #####\\#######\
+"													_______,#######|\#######\
+"													\W############W  \#######\
+"													 \W##########W		\#######\
+"														'#########'			 \#######\
+"															 ¯¯¯¯¯					¯¯¯¯¯¯¯¯
 "
-"       Personal vim configuration of Raphael Beck-Protoy 
-"       inspired from Jess Archer <jess@jessarcher.com>
+"				Personal vim configuration of Raphael Beck-Protoy 
+"				inspired from Jess Archer <jess@jessarcher.com>
 
 "--------------------------------------------------------------------------
 " General settings
 "--------------------------------------------------------------------------
 
-set expandtab
-set shiftwidth=4
-set tabstop=4
-set noexpandtab
+set expandtab " convert tab to spaces
+set tabstop=2 " the length in spaces for one tab
+set shiftwidth=0 " if 0 then equal tabstop
+set smarttab
+set noexpandtab " do not convert tab to spaces
 set hidden
-set signcolumn=yes:2
-set relativenumber
-set number
+set signcolumn=yes:1 " left column sign and size
+set number " line number
+set ruler
 set termguicolors
 set undofile
 set spell
@@ -115,7 +116,7 @@ cmap w!! %!sudo tee > /dev/null %
 " Auto pull and install vim-plug
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
-	  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 	endif
 
@@ -127,6 +128,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 	source ~/.config/nvim/plugins/surround.vim 
 	source ~/.config/nvim/plugins/floaterm.vim 
 	source ~/.config/nvim/plugins/python.vim 
+	source ~/.config/nvim/plugins/fugitive.vim 
 call plug#end()
 doautocmd User PlugLoaded
 
@@ -135,9 +137,9 @@ doautocmd User PlugLoaded
 "--------------------------------------------------------------------------
 
 augroup FileTypeOverrides
-    autocmd!
-    " Use '//' instead of '/* */' comments
-    autocmd FileType php setlocal commentstring=//%s
+		autocmd!
+		" Use '//' instead of '/* */' comments
+		autocmd FileType php setlocal commentstring=//%s
 	autocmd FileType yaml setlocal tabstop=4 softtabstop=2 shiftwidth=2 smartindent noexpandtab
-    autocmd TermOpen * setlocal nospell
+		autocmd TermOpen * setlocal nospell
 augroup END
