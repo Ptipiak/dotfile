@@ -16,7 +16,7 @@ endif
 let g:coc_global_extensions = [
 	\'coc-json',
 	\'coc-git',
-	\'coc-pyright'
+	\'coc-pyright',
 \]
 
 " Use `[g` and `]g` to navigate diagnostics

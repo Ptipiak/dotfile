@@ -21,7 +21,6 @@ set expandtab " convert tab to spaces
 set tabstop=2 " the length in spaces for one tab
 set shiftwidth=0 " if 0 then equal tabstop
 set smarttab
-set noexpandtab " do not convert tab to spaces
 set hidden
 set signcolumn=yes:1 " left column sign and size
 set number " line number
@@ -36,6 +35,7 @@ set incsearch
 set wildmode=longest:full,full
 set nowrap
 set showmatch
+set showmode
 set list
 set listchars=tab:›–,eol:¬,trail:¤
 set mouse=a
@@ -43,8 +43,7 @@ set scrolloff=8
 set sidescrolloff=8
 set nojoinspaces
 set splitright
-set splitbelow
-" set clipboard=unnamedplus
+set clipboard=unnamedplus
 set confirm
 set exrc
 " set backup
@@ -121,14 +120,15 @@ if empty(glob(data_dir . '/autoload/plug.vim'))
 	endif
 
 call plug#begin('~/.local/share/nvim/plugged')
-	source ~/.config/nvim/plugins/colorthemes.vim 
 	source ~/.config/nvim/plugins/coc.vim 
-	source ~/.config/nvim/plugins/lightline.vim 
+	source ~/.config/nvim/plugins/colorthemes.vim 
 	source ~/.config/nvim/plugins/commentary.vim 
-	source ~/.config/nvim/plugins/surround.vim 
 	source ~/.config/nvim/plugins/floaterm.vim 
-	source ~/.config/nvim/plugins/python.vim 
 	source ~/.config/nvim/plugins/fugitive.vim 
+	source ~/.config/nvim/plugins/lightline.vim 
+	source ~/.config/nvim/plugins/python.vim 
+	source ~/.config/nvim/plugins/surround.vim 
+  source ~/.config/nvim/plugins/netrw.vim
 call plug#end()
 doautocmd User PlugLoaded
 
