@@ -17,39 +17,44 @@
 " General settings
 "--------------------------------------------------------------------------
 
+" set backupdir=~/.local/share/nvim/backup//
+" set undofile
+set clipboard=unnamedplus
+set cmdheight=2
+set confirm
 set expandtab " convert tab to spaces
-set tabstop=2 " the length in spaces for one tab
-set shiftwidth=0 " if 0 then equal tabstop
-set smarttab
+set exrc
 set hidden
-set signcolumn=yes:1 " left column sign and size
-set number " line number
-set ruler
-set termguicolors
-set undofile
-set spell
-set title
 set ignorecase
-set smartcase
 set incsearch
-set wildmode=longest:full,full
-set nowrap
-set showmatch
-set showmode
 set list
 set listchars=tab:›–,eol:¬,trail:¤
 set mouse=a
-set scrolloff=8
-set sidescrolloff=8
+set nobackup
 set nojoinspaces
-set splitright
-set clipboard=unnamedplus
-set confirm
-set exrc
-" set backup
-" set backupdir=~/.local/share/nvim/backup//
-set updatetime=300 " Reduce time for highlighting other references
+set noro
+set nowrap
+set nowritebackup
+set number " line number
 set redrawtime=10000 " Allow more time for loading syntax on large files
+set ruler
+set scrolloff=8
+set shiftwidth=0 " if 0 then equal tabstop
+set shortmess+=c
+set showmatch
+set showmode
+set sidescrolloff=8
+set signcolumn=yes:1 " left column sign and size
+set smartcase
+set smarttab
+set spell
+set splitright
+set splitbelow
+set tabstop=2 " the length in spaces for one tab
+set termguicolors
+set title
+set updatetime=300 " Reduce time for highlighting other references
+set wildmode=longest:full,full
 
 "--------------------------------------------------------------------------
 " Key maps
@@ -106,7 +111,8 @@ imap jj <esc>
 imap ;; <Esc>A;<Esc>
 imap ,, <Esc>A,<Esc>
 
-cmap w!! %!sudo tee > /dev/null %
+" Allows writing to files with root priviledges
+cmap w!! w !sudo tee % > /dev/null
 
 "--------------------------------------------------------------------------
 " Plugins

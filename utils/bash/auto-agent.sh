@@ -1,9 +1,13 @@
-if [ -r ~/.ssh/ssh-agent ]; then
-	echo "agent exist"
-	eval "$(<~/.ssh/ssh-agent)"
-else
-	echo "agent does not exist"
-	ssh-agent > ~/.ssh/ssh-agent
-	eval "$(<~/.ssh/ssh-agent)"
+ssh-add -l &>/dev/null
+if [ $? = 2 ]; then
+  # ssh agent exist
+  [ -f ~/.ssh/ssh-agent ] && eval "$(<~/.ssh/ssh-agent)" &>/dev/null
+
+  ssh-add -l &>/dev/null
+  if [ $? = 2 ]; then
+    # ssh agent doesn't exist
+    (umask 066; ssh-agent > ~/.ssh/ssh-agent)
+    eval "$(<~/.ssh/ssh-agent)" &> /dev/null
+    ssh-add
+  fi
 fi
-ssh-add
