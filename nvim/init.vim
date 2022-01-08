@@ -118,12 +118,7 @@ cmap w!! w !sudo tee % > /dev/null
 " Plugins
 "--------------------------------------------------------------------------
 
-" Auto pull and install vim-plug
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
-if empty(glob(data_dir . '/autoload/plug.vim'))
-		silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-		autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-	endif
+" Assert vim plug is installed and update ?
 
 call plug#begin('~/.local/share/nvim/plugged')
 	source ~/.config/nvim/plugins/coc.vim 
@@ -143,9 +138,6 @@ doautocmd User PlugLoaded
 "--------------------------------------------------------------------------
 
 augroup FileTypeOverrides
-		autocmd!
-		" Use '//' instead of '/* */' comments
-		autocmd FileType php setlocal commentstring=//%s
-	autocmd FileType yaml setlocal tabstop=4 softtabstop=2 shiftwidth=2 smartindent noexpandtab
-		autocmd TermOpen * setlocal nospell
+	" autocmd FileType yaml setlocal tabstop=4 softtabstop=2 shiftwidth=2 smartindent noexpandtab
+	autocmd TermOpen * setlocal nospell
 augroup END

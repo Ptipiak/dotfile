@@ -26,4 +26,6 @@ if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
 fi
 
-source ~/.config/utils/*.sh
+for file in ~/.config/utils/*.sh;
+do source $file;
+done
