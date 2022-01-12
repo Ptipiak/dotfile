@@ -1,0 +1,12 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhistcnt =7
+let g:netrw_dirhist_7='/home/raphaelbp/Documents/Project/plex'
+let g:netrw_dirhist_6='/home/raphaelbp/Documents/Project'
+let g:netrw_dirhist_5='/home/raphaelbp/Documents/Project/seafile-docker'
+let g:netrw_dirhist_4='/home/raphaelbp/Documents/Project'
+let g:netrw_dirhist_3='/home/raphaelbp/Documents/Project/jellyfin'
+let g:netrw_dirhist_2='/home/raphaelbp/Documents/Project/BVA-CX/npm-instrument-DashboardInsight/src/components/DashboardInsight'
+let g:netrw_dirhist_1='/home/raphaelbp/Documents/Project/BVA-CX/npm-instrument-DashboardInsight/src/components/DashboardInsight/KpiChartRenderer'
+let g:netrw_dirhist_0='/home/raphaelbp/Documents/Project/BVA-CX/npm-instrument-DashboardInsight/src/components/DashboardInsight'
+let g:netrw_dirhist_9='/home/raphaelbp/Documents/Project/BVA-CX/npm-instrument-DashboardInsight/src/components/DashboardInsight/SectionList'
+let g:netrw_dirhist_8='/home/raphaelbp/Documents/Project/BVA-CX/npm-instrument-DashboardInsight/src/components/DashboardInsight'
