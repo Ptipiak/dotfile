@@ -35,6 +35,9 @@ set nowritebackup
 set number
 set redrawtime=10000 " Allow more time for loading syntax on large files
 set relativenumber " line number
+set relativenumber " line number
+set redrawtime=10000 " Allow more time for loading syntax on large files
+" set ruler
 set scrolloff=4
 set secure
 set shiftwidth=0 " if 0 then equal tabstop
