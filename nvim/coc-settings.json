@@ -9,5 +9,5 @@
 	"diagnostic.infoSign": "•",
 	"diagnostic.hintSign": "•",
 	"python.linting.flake8Enabled": true,
-  "pyright.organizeimports.provider": "isort",
+  "pyright.organizeimports.provider": "isort"
 }

@@ -32,13 +32,13 @@ set listchars=tab:›–,eol:¬,trail:¤
 set mouse=a
 set nobackup
 set nojoinspaces
-set noro
 set nowrap
 set nowritebackup
-set number " line number
+set relativenumber " line number
 set redrawtime=10000 " Allow more time for loading syntax on large files
-set ruler
-set scrolloff=8
+" set ruler
+set scrolloff=4
+set secure
 set shiftwidth=0 " if 0 then equal tabstop
 set shortmess+=c
 set showmatch
