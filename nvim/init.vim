@@ -91,7 +91,7 @@ noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
 noremap <silent> <expr> k (v:count == 0 ? 'gk' : 'k')
 
 " Paste replace visual selection without copying it
-vnoremap <leader>p "_dP
+" vnoremap <leader>p "_dP
 
 " Make Y behave like the other capitals
 nnoremap Y y$
