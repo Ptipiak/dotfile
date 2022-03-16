@@ -17,9 +17,7 @@
 " General settings
 "--------------------------------------------------------------------------
 
-" set backupdir=~/.local/share/nvim/backup//
-" set undofile
-set clipboard=unnamedplus
+set clipboard=unnamed
 set cmdheight=2
 set confirm
 set expandtab " convert tab to spaces
@@ -34,9 +32,9 @@ set nobackup
 set nojoinspaces
 set nowrap
 set nowritebackup
-set relativenumber " line number
+set number
 set redrawtime=10000 " Allow more time for loading syntax on large files
-" set ruler
+set relativenumber " line number
 set scrolloff=4
 set secure
 set shiftwidth=0 " if 0 then equal tabstop
@@ -48,8 +46,8 @@ set signcolumn=yes:1 " left column sign and size
 set smartcase
 set smarttab
 set spell
-set splitright
 set splitbelow
+set splitright
 set tabstop=2 " the length in spaces for one tab
 set termguicolors
 set title
@@ -69,7 +67,7 @@ nmap <leader>vr :source ~/.config/nvim/init.vim<cr>
 nmap <leader>k :nohlsearch<CR>
 
 " Allow gf to open non-existent files
-map gf :edit <cfile><cr>
+" map gf :edit <cfile><cr>
 
 " Quicker switching between windows
 nmap <silent> <C-h> <C-w>h
@@ -82,9 +80,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 " Maintain the cursor position when yanking a visual selection
-" http://ddrscott.github.io/blog/2016/yank-without-jank/
-vnoremap y myy`y
-vnoremap Y myY`y
+vnoremap y ygvh<esc> 
+vnoremap Y Ygvh<esc>
 
 " When text is wrapped, move by terminal rows, not lines, unless a count is provided
 noremap <silent> <expr> j (v:count == 0 ? 'gj' : 'j')
@@ -99,7 +96,7 @@ nnoremap Y y$
 " Keep it centered
 nnoremap n nzzzv
 nnoremap N Nzzzv
-nnoremap J mzJ`z
+" nnoremap J mzJ`z
 
 " Open the current file in the default program (not working on WSL obvi)
 " nmap <leader>x :!xdg-open %<cr><cr>
