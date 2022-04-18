@@ -18,10 +18,9 @@ let g:lightline = {
 
 " Allow ligjtline to display the full path instead of just the filename
 function! LightlineFilename()
-	return &filetype ==# 'vimfiler' ? vimfiler#get_status_string() :
-		\ &filetype ==# 'unite' ? unite#get_status_string() :
-		\ &filetype ==# 'vimshell' ? vimshell#get_status_string() :
-		\ expand('%:t') !=# '' ? expand('%:t') : '[No name]'
+  let filename = expand('%t') !=# '' ? expand('%t') : '[No Name]'
+  let modified = &modified ? ' +': ''
+  return filename . modified
 endfunction
 
 let g:unite_force_overwrite_statusline = 0
