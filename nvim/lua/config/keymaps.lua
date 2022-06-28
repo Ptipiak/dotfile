@@ -21,7 +21,7 @@ local wrap = function(func, ...)
 end
 
 map('n', '<leader>ve', ':edit ~/.config/nvim/init.lua<cr>')
-map('n', '<leader>vs', ':source ~/.config/nvim/init.lua<cr>')
+map('n', '<leader>vs', ':luafile ~/.config/nvim/init.lua<cr>')
 
 map('n', '<leader>k', ':nohls<cr>')
 map('n', '<leader>gf', ':edit <cfile><cr>')
@@ -46,6 +46,14 @@ map('v', 'Y', 'Ygvh<esc>')
 -- When text is wrapped, move by terminal rows, not lines, unless a count is provided
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
+
+-- Copy to system clippboard
+map('n', "<leader>y", '"+y')
+map('v', "<leader>y", '"+y')
+
+-- Paste from system clippboard
+map('n', "<leader><C-v>", '"+p')
+map('v', "<leader><C-v>", '"+p')
 
 -- map('n', 'k', example, { silent = true})
 
@@ -74,7 +82,7 @@ map('i', ',,', '<esc>A,<esc>')
 -- cmap w!! w !sudo tee % > /dev/null
 
 -- nmap <leader>nu :set number! relativenumber!<CR>
-map('n', '<leader>nu', function() vim.opt.number = not vim.opt.numbeh end)
+map('n', '<leader>nu', function() vim.opt.number = not vim.opt.number end)
 
 -- Resize the windows more efficiently
 
