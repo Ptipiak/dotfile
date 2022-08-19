@@ -1,0 +1,21 @@
+- defaults:
+    link:
+      create: true
+- clean: [
+  '~',
+  '~/.config'
+]
+- link:
+      ~/.config/nvim:
+            path: ./nvim
+      ~/.nvmrc:
+            path: ./profile/.nvmrc
+      ~/.config/fish/config.fish:
+            path: ./profile/fish/config.fish
+      ~/.config/fish/functions/ssh-auto.fish:
+            path: ./profile/fish/functions/ssh-auto.fish
+
+- shell:
+    - ["git config --global core.editor nvim"]
+    - ["git config --global merge.tool fugitive"]
+    - ["git config --global mergetool.fugitive.cmd 'nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"'"]

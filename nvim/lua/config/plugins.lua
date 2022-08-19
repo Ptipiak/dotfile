@@ -3,9 +3,10 @@
 -- To be change into lua format
 ----------------------------------------------------------------------------
 local load = function(path)
-  local loaded, _ = pcall(require, path)
+  local loaded, response = pcall(require, path)
   if not loaded then
     print(path, ' ', 'was not loaded')
+    print('Stack: ', response)
   end
 end
 
@@ -17,6 +18,7 @@ use {"neoclide/coc.nvim", branch="release"}
 use "tpope/vim-commentary"
 use "tpope/vim-fugitive"
 -- telescope
+use "nvim-lua/plenary.nvim"
 use {'nvim-telescope/telescope.nvim', requires = { {'nvim-lua/plenary.nvim'}}}
 use {"nvim-telescope/telescope-fzf-native.nvim", run = 'make' }
 

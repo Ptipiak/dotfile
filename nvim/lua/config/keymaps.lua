@@ -20,7 +20,7 @@ local wrap = function(func, ...)
   end
 end
 
-map('n', '<leader>ve', ':edit ~/.config/nvim/init.lua<cr>')
+map('n', '<leader>ve', ':edit ~/.config/nvim/<cr>')
 map('n', '<leader>vs', ':luafile ~/.config/nvim/init.lua<cr>')
 
 map('n', '<leader>k', ':nohls<cr>')
@@ -48,12 +48,12 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 -- Copy to system clippboard
-map('n', "<leader>y", '"+y')
-map('v', "<leader>y", '"+y')
+-- map('n', "<leader>y", '"+y')
+-- map('v', "<leader>y", '"+y')
 
 -- Paste from system clippboard
-map('n', "<leader><C-v>", '"+p')
-map('v', "<leader><C-v>", '"+p')
+-- map('n', "<leader><C-v>", '"+p')
+-- map('v', "<leader><C-v>", '"+p')
 
 -- map('n', 'k', example, { silent = true})
 
@@ -89,3 +89,12 @@ map('n', '<leader>nu', function() vim.opt.number = not vim.opt.number end)
 -- inoremap <leader>+ :vertical resize +5<CR>
 -- inoremap <leader>- :vertical resize -5<CR>
 
+-- Optional key map for WSL distro
+in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
+if in_wsl then
+    vim.g.clipboard = {
+        name = 'wsl clipboard',
+        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
+        cache_enabled = true
+    }
+end
