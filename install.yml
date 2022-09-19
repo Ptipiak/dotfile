@@ -9,7 +9,7 @@
       ~/.config/nvim:
             path: ./nvim
       ~/.nvmrc:
-            path: ./profile/.nvmrc
+            path: ./profile/nvmrc
       ~/.config/fish/config.fish:
             path: ./profile/fish/config.fish
       ~/.config/fish/functions/ssh-auto.fish:
