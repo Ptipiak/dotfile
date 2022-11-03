@@ -7,93 +7,61 @@ local function map(mode, lhs, rhs, opts)
 end 
 
 local expr_opts = { noremap = true, silent = true, expr = true }
-local opts = { noremap = true, silent = true }
-
--- use CR to complete
-map(
-    "i",
-    "<CR>",
-    [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]],
-    expr_opts
-)
-
--- use <c-space> to trigger completion.
-map("i", "<c-space>", [[coc#refresh()]], expr_opts)
+local opts = {silent = true, noremap = true, expr = true, replace_keycodes = false}
 
 -- Navigate PUM using tab and shift-tab
-map('i', '<tab>', [[coc#pum#visible() ? coc#pum#next(1) : coc#jumpable() ? "\<tab>=coc#rpc#request('snippetNext', [])<cr>" : "\<tab>"]], {silent= true, expr = true})
-map('i', '<S-tab>', [[coc#pum#visible() ? coc#pum#prev(1) : coc#jumpable() ? "\<S-tab>=coc#rpc#request('snippetPrevious', [])<cr>" : "\<S-tab>"]], {silent= true, expr = true}) 
+map("i", "<TAB>", 'coc#pum#visible() ? coc#pum#next(1) : v:lua.check_back_space() ? "<TAB>" : coc#refresh()', opts)
+map("i", "<S-TAB>", [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], opts)
 
--- use <c-space> to trigger completion.
-map("i", "<c-space>", [[coc#refresh()]], expr_opts)
+-- Make <CR> to accept selected completion item or notify coc.nvim to format
+-- <C-g>u breaks current undo, please make your own choice.
+map("i", "<cr>", [[coc#pum#visible() ? coc#pum#confirm() : "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"]], opts)
 
--- navigate diagnostic
-map("n", "[a", "<Plug>(coc-diagnostic-prev)", { silent = true })
-map("n", "]a", "<Plug>(coc-diagnostic-next)", { silent = true })
+-- Use <c-j> to trigger snippets
+map("i", "<c-j>", "<Plug>(coc-snippets-expand-jump)")
+-- Use <c-space> to trigger completion.
+map("i", "<c-space>", "coc#refresh()", {silent = true, expr = true})
+
+-- Use `[g` and `]g` to navigate diagnostics
+-- Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
+map("n", "[g", "<Plug>(coc-diagnostic-prev)", {silent = true})
+map("n", "]g", "<Plug>(coc-diagnostic-next)", {silent = true})
 
 -- GoTo code navigation.
-map("n", "gd", "<Plug>(coc-definition)", { silent = true })
-map("n", "gs", ":call CocAction('jumpDefinition', 'vsplit') <CR>", { silent = true })
-map("n", "gy", "<Plug>(coc-type-definition)", { silent = true })
-map("n", "gi", "<Plug>(coc-implementation)", { silent = true })
-map("n", "gr", "<Plug>(coc-references)", { silent = true })
+map("n", "gd", "<Plug>(coc-definition)", {silent = true})
+map("n", "gy", "<Plug>(coc-type-definition)", {silent = true})
+map("n", "gi", "<Plug>(coc-implementation)", {silent = true})
+map("n", "gr", "<Plug>(coc-references)", {silent = true})
 
--- highlight
--- for custom pop menu
-vim.highlight.create("CocCustomPopup", { guifg = "#ebdbb2", guibg = "#282828" })
--- border
-vim.highlight.create("CocCustomPopupBoder", { guifg = "#5F5F5F", gui = "bold" })
--- selected row
-vim.highlight.create("CocMenuSel", { guibg = "#3c3836", gui = "bold" })
--- matched_text
-vim.highlight.create("CocSearch", { guifg = "#fabd2f" })
 
 -- Use K to show documentation in preview window.
-function Show_documentation()
-    local filetype = vim.bo.filetype
-    if filetype == "vim" or filetype == "help" then
-        vim.api.nvim_command("h " .. vim.fn.expand("<cword>"))
-    elseif vim.fn["coc#rpc#ready"]() then
-        vim.fn.CocActionAsync("doHover")
+function _G.show_docs()
+    local cw = vim.fn.expand('<cword>')
+    if vim.fn.index({'vim', 'help'}, vim.bo.filetype) >= 0 then
+        vim.api.nvim_command('h ' .. cw)
+    elseif vim.api.nvim_eval('coc#rpc#ready()') then
+        vim.fn.CocActionAsync('doHover')
     else
-        vim.api.nvim_command(
-            "!" .. vim.bo.keywordprg .. " " .. vim.fn.expand("<cword>")
-        )
+        vim.api.nvim_command('!' .. vim.o.keywordprg .. ' ' .. cw)
     end
 end
+map("n", "K", '<CMD>lua _G.show_docs()<CR>', {silent = true})
 
-map("n", "K", ":lua Show_documentation() <CR>", opts)
+
+-- Highlight the symbol and its references when holding the cursor.
+vim.api.nvim_create_augroup("CocGroup", {})
+vim.api.nvim_create_autocmd("CursorHold", {
+    group = "CocGroup",
+    command = "silent call CocActionAsync('highlight')",
+    desc = "Highlight symbol under cursor on CursorHold"
+})
+
 
 -- Symbol renaming.
-map("n", "<leader>rn", "<Plug>(coc-rename)", {})
-
--- " Formatting selected code. Followed by highlighted code
-map("x", "<leader>f", "<Plug>(coc-format-selected)", {})
-
--- " Mappings for CoCList
--- " Show all diagnostics (Errors and warnings).
-map("n", "<leader>a", ":<C-u>CocList diagnostics<CR>", opts)
--- " Find symbol of current document
-map("n", "<leader>o", ":<C-u>CocList outline<CR>", opts)
-
--- HAVNE'T FOUND A GOOD USE-CASE YET
--- " Applying codeAction to the selected region.
--- " Example: `<leader>aap` for current paragraph
--- xmap <leader>a  <Plug>(coc-codeaction-selected)
--- nmap <leader>a  <Plug>(coc-codeaction-selected)
-
--- " Remap keys for applying codeAction to the current buffer.
--- nmap <leader>ac  <Plug>(coc-codeaction)
--- " Apply AutoFix to problem on the current line.
--- " NOTE: haven't found a use case for it yet. makes quit shortcut wait.
--- " Therefore disabling it for now
--- " nmap <leader>qf  <Plug>(coc-fix-current)
+map("n", "<leader>rn", "<Plug>(coc-rename)", {silent = true})
 
 
--- Commands
--- " Add `:Format` command to format current buffer.
-vim.api.nvim_create_user_command("Format", ":call CocAction('format')", { nargs = 0 })
+-- Formatting selected code.
+map("x", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
+map("n", "<leader>f", "<Plug>(coc-format-selected)", {silent = true})
 
--- Add `:OR` command for organize imports of the current buffer.
-vim.api.nvim_create_user_command("OI", ":call CocActionAsync('runCommand', 'editor.action.organizeImport')",
-    { nargs = 0 })

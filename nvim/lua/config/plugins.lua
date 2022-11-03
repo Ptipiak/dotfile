@@ -12,8 +12,11 @@ end
 
 require('packer').startup(function()
 
+-- Packer can manage itself
+use 'wbthomason/packer.nvim'
 use "neovim/nvim-lspconfig"
 use "sainnhe/sonokai"
+use "sainnhe/gruvbox-material"
 use {"neoclide/coc.nvim", branch="release"}
 use "tpope/vim-commentary"
 use "tpope/vim-fugitive"
