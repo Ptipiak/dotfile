@@ -20,8 +20,10 @@ local wrap = function(func, ...)
   end
 end
 
-map('n', '<leader>ve', ':edit ~/.config/nvim/<cr>')
-map('n', '<leader>vs', ':luafile ~/.config/nvim/init.lua<cr>')
+local home = os.getenv('HOME') .. '/'
+
+map('n', '<leader>ce', ':edit ~/.config/nvim/<cr>')
+map('n', '<leader>cs', ReloadConfig)
 
 map('n', '<leader>k', ':nohls<cr>')
 map('n', '<leader>gf', ':edit <cfile><cr>')
@@ -83,6 +85,10 @@ map('i', ',,', '<esc>A,<esc>')
 
 -- nmap <leader>nu :set number! relativenumber!<CR>
 map('n', '<leader>nu', function() vim.opt.number = not vim.opt.number end)
+
+
+-- To map <Esc> to exit terminal-mode
+map('t', '<Esc>', '<C-\\><C-n>')
 
 -- Resize the windows more efficiently
 

@@ -3,11 +3,11 @@
 -- To be change into lua format
 ----------------------------------------------------------------------------
 --
-vim.opt.backup = false
 vim.opt.background='dark'
+vim.opt.backup = false
 vim.opt.backupdir='.nvim/backup//'
-vim.opt.cmdheight=2
 vim.opt.clipboard:append('unnamedplus')
+vim.opt.cmdheight=2
 vim.opt.confirm = true
 vim.opt.directory='.nvim/swap//'
 vim.opt.expandtab = true -- convert tab to spaces
