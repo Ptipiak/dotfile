@@ -1,1 +1,3 @@
 .nvim
+nvim/plugin
+nvim/spell
