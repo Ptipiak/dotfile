@@ -3,11 +3,11 @@
 -- To be change into lua format
 ----------------------------------------------------------------------------
 --
-vim.opt.backup = false
 vim.opt.background='dark'
+vim.opt.backup = false
 vim.opt.backupdir='.nvim/backup//'
-vim.opt.cmdheight=2
 vim.opt.clipboard:append('unnamedplus')
+vim.opt.cmdheight=2
 vim.opt.confirm = true
 vim.opt.directory='.nvim/swap//'
 vim.opt.expandtab = true -- convert tab to spaces
@@ -42,13 +42,3 @@ vim.opt.updatetime = 300 -- Reduce time for highlighting other references
 vim.opt.wildmode = { longest=full,full }
 vim.opt.wrap = false
 vim.opt.writebackup = false
-
-in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
-if in_wsl then
-    vim.g.clipboard = {
-        name = 'wsl clipboard',
-        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
-        paste = { ["+"] = { "nvim_paste" }, ["*"] = { "nvim_paste" } },
-        cache_enabled = true
-    }
-end

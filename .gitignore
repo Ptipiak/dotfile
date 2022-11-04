@@ -1,1 +1,3 @@
-.netrwhist
+.nvim
+nvim/plugin
+nvim/spell
