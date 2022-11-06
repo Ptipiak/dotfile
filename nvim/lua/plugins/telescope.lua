@@ -6,13 +6,21 @@ local function map(mode, lhs, rhs, opts)
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
-
-map('n', '<leader>f', ':Telescope find_files<cr>')
-map('n', '<leader>b', ':Telescope buffers<cr>')
-
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
-require('telescope').setup {
+local telescope = require('telescope')
+local actions = require("telescope.actions")
+telescope.setup {
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-s>"] = actions.select_horizontal,
+      },
+      n = {
+        ["<C-s>"] = actions.select_horizontal,
+      },
+    },
+  },
   extensions = {
     fzf = {
       fuzzy = true,                    -- false will only do exact matching
@@ -23,21 +31,14 @@ require('telescope').setup {
     }
   }
 }
+
 -- To get fzf loaded and working with telescope, you need to call
 -- load_extension, somewhere after setup function:
-require('telescope').load_extension('fzf')
+telescope.load_extension('fzf')
 
-local actions = require("telescope.actions")
-local action_layout = require("telescope.actions.layout")
-require("telescope").setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-s>"] = actions.select_horizontal,
-      },
-      n = {
-        ["<C-s>"] = actions.select_horizontal,
-      },
-    },
-  }
-}
+
+-- Mapping for the plugin
+local builtin = require("telescope.builtin")
+map('n', '<leader>f', function() builtin.find_files() end)
+map('n', '<leader>b', function() builtin.buffers() end)
+map('n', '<leader>c', function() builtin.commands() end)

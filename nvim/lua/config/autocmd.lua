@@ -1,7 +1,9 @@
-local home = os.getenv('HOME') .. '/'
+----------------------------------------------------------------------------
+-- Automatic commands
+----------------------------------------------------------------------------
 
-terminal_group = vim.api.nvim_create_augroup("Terminal", {})
-
+-- Make the terminal emulator look better
+terminal_group = vim.api.nvim_create_augroup("terminal", {})
 vim.api.nvim_create_autocmd("TermOpen", {
   desc = "Make terminal emulator look like a terminal",
   group = terminal_group,
@@ -16,13 +18,26 @@ vim.api.nvim_create_autocmd("TermOpen", {
   end
 });
 
-config_group = vim.api.nvim_create_augroup("Configuration", {})
-
+-- Reload the configuration every time one of the files is written.
+config_group = vim.api.nvim_create_augroup("configuration", {})
 vim.api.nvim_create_autocmd("BufWritePost", {
   desc="Reload the lua config files on change",
   group = config_group,
-  pattern = {home .. "*.lua", "keymap.lua"},
-  callback = function()
-    dofile(home .. ".config/nvim/init.lua")
-  end,
+  pattern = {home .. "*.lua"},
+  callback = ReloadConfig
 });
+
+-- Highlight the symbol and its references when holding the cursor.
+file_type_group = vim.api.nvim_create_augroup("filetype", {})
+coc_group = vim.api.nvim_create_augroup("CocGroup", {})
+vim.api.nvim_create_autocmd("CursorHoldI", {
+    desc = "Highlight symbol under cursor on CursorHold",
+    group = coc_group, 
+    callback = function(event)
+      local cw = vim.fn.expand('<cword>')
+      print('file: ', event['file'], '\nevent: ', event['event'], '\ncword: ', cw)
+      if vim.fn.CocHasProvider('hover') then
+        vim.fn.CocActionAsync('doHover')
+      end
+    end,
+})
