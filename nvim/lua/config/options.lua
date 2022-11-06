@@ -1,8 +1,7 @@
 ----------------------------------------------------------------------------
 -- General settings
--- To be change into lua format
 ----------------------------------------------------------------------------
---
+
 vim.opt.background='dark'
 vim.opt.backup = false
 vim.opt.backupdir='.nvim/backup//'
@@ -38,7 +37,17 @@ vim.opt.splitright = true
 vim.opt.tabstop = 2 -- the length in spaces for one tab
 vim.opt.termguicolors = true
 vim.opt.title = true
-vim.opt.updatetime = 300 -- Reduce time for highlighting other references
+vim.opt.updatetime = 1000 -- Reduce time for highlighting other references
 vim.opt.wildmode = { longest=full,full }
 vim.opt.wrap = false
 vim.opt.writebackup = false
+
+-- Optional setting for WSL distro
+in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
+if in_wsl then
+    vim.opt.clipboard = {
+        name = 'wsl clipboard',
+        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
+        cache_enabled = true
+    }
+end

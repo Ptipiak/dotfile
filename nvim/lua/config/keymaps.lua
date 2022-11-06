@@ -1,26 +1,10 @@
 ----------------------------------------------------------------------------
 -- Key maps
--- To be change into lua format
 ----------------------------------------------------------------------------
 
-vim.g.mapleader = ' '
-
-local function map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
-    end
-    vim.keymap.set(mode, lhs, rhs, options)
-end
-
-local wrap = function(func, ...)
-  local args = {...}
-    return function()
-      func(unpack(args))
-  end
-end
-
 local home = os.getenv('HOME') .. '/'
+
+vim.g.mapleader = ' '
 
 map('n', '<leader>ce', ':edit ~/.config/nvim/<cr>')
 map('n', '<leader>cs', ReloadConfig)
@@ -95,12 +79,5 @@ map('t', '<Esc>', '<C-\\><C-n>')
 -- inoremap <leader>+ :vertical resize +5<CR>
 -- inoremap <leader>- :vertical resize -5<CR>
 
--- Optional key map for WSL distro
-in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil
-if in_wsl then
-    vim.g.clipboard = {
-        name = 'wsl clipboard',
-        copy =  { ["+"] = { "clip.exe" },   ["*"] = { "clip.exe" } },
-        cache_enabled = true
-    }
-end
+-- allow Tab to show available command in command line mode
+-- map('c', '<Tab>', '<C-L><C-D>')

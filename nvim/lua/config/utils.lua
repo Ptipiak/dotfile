@@ -1,31 +1,44 @@
 ----------------------------------------------------------------------------
 -- Utils
--- To be change into lua format
 ----------------------------------------------------------------------------
 
--- augroup FileTypeOverrides
--- 	" autocmd FileType yaml setlocal tabstop=4 softtabstop=2 shiftwidth=2 smartindent noexpandtab
--- 	autocmd TermOpen * setlocal nospell
--- augroup END
+_G.home = os.getenv('HOME') .. '/'
+vim.env.MYVIMRC = home .. ".config/nvim/init.lua"
 
--- -- Allow to use yanking and filling up the windows clipboard
--- if system('uname -r') =~ "Microsoft"
---   augroup Yank
---     autocmd!
---     autocmd TextYankPost * :call system('/mnt/c/Windows/System32/clip.exe', @")
---     augroup END
--- endif
+-- _G: A global variable (not a function) that holds the global environment
+-- (that is, `_G._G = _G`). Lua itself does not use this variable;
+-- changing its value does not affect any environment, nor vice-versa.
+-- (Use `setfenv` to change environments.)
 
-function _G.ReloadConfig()
-    local hls_status = vim.v.hlsearch
-    for name,_ in pairs(package.loaded) do
-    if name:match('^cnull') then
-      package.loaded[name] = nil
+-- Wrapper around the map function
+function _G.map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
     end
-  end
-
-  dofile(vim.env.MYVIMRC)
-    if hls_status == 0 then
-        vim.opt.hlsearch = false
-    end
+    vim.keymap.set(mode, lhs, rhs, options)
 end
+
+-- Do a hard reload of the config by changing the value
+-- of the loaded lua file to nul
+function _G.ReloadConfig()
+    for name,_ in pairs(package.loaded) do
+      if name:match('^config') then
+        package.loaded[name] = nil
+      end
+    end
+    dofile(vim.env.MYVIMRC)
+    print("Config reloaded")
+end
+
+-- Wrapper around the require method
+-- Allow to load plugin without an hard crash
+function _G.load(path)
+  local loaded, response = pcall(require, path)
+  if not loaded then
+    print(path, ' ', 'was not loaded')
+    print('Stack: ', response)
+  end
+end
+
+
