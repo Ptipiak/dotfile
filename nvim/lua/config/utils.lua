@@ -4,17 +4,17 @@
 
 _G.home = os.getenv('HOME') .. '/'
 vim.env.MYVIMRC = home .. ".config/nvim/init.lua"
-
 -- _G: A global variable (not a function) that holds the global environment
 -- (that is, `_G._G = _G`). Lua itself does not use this variable;
 -- changing its value does not affect any environment, nor vice-versa.
 -- (Use `setfenv` to change environments.)
 
 -- Wrapper around the map function
-function _G.map(mode, lhs, rhs, opts)
-    local options = { noremap = true }
-    if opts then
-        options = vim.tbl_extend("force", options, opts)
+function _G.map(mode, lhs, rhs, options)
+    local default = { noremap = true }
+    -- Set the options to a default if options is present
+    if options then
+        options = vim.tbl_extend("force", default, options)
     end
     vim.keymap.set(mode, lhs, rhs, options)
 end

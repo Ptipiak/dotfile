@@ -28,16 +28,15 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 });
 
 -- Highlight the symbol and its references when holding the cursor.
-file_type_group = vim.api.nvim_create_augroup("filetype", {})
-coc_group = vim.api.nvim_create_augroup("CocGroup", {})
-vim.api.nvim_create_autocmd("CursorHoldI", {
-    desc = "Highlight symbol under cursor on CursorHold",
-    group = coc_group, 
-    callback = function(event)
-      local cw = vim.fn.expand('<cword>')
-      print('file: ', event['file'], '\nevent: ', event['event'], '\ncword: ', cw)
-      if vim.fn.CocHasProvider('hover') then
-        vim.fn.CocActionAsync('doHover')
-      end
-    end,
-})
+-- file_type_group = vim.api.nvim_create_augroup("filetype", {})
+-- coc_group = vim.api.nvim_create_augroup("CocGroup", {})
+-- vim.api.nvim_create_autocmd("CursorHoldI", {
+--     desc = "Highlight symbol under cursor on CursorHold",
+--     group = coc_group, 
+--     callback = function(event)
+--       local cw = vim.fn.expand('<cexpr>')
+--       if vim.fn.CocHasProvider('hover') then
+--         vim.lsp.buf.hover(cw)
+--       end
+--     end,
+-- })
