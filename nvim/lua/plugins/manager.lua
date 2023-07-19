@@ -1,3 +1,0 @@
-paq {
-  "sacq/paq-nvim";
-}

@@ -9,11 +9,7 @@ vim.g.mapleader = ' '
 map('n', '<leader>ce', ':edit ~/.config/nvim/<cr>')
 map('n', '<leader>cs', ReloadConfig)
 
-map('n', '<leader>k', ':nohls<cr>')
-map('n', '<leader>gf', ':edit <cfile><cr>')
-
--- Allow gf to open non-existent files
--- map gf :edit <cfile><cr>
+map('n', '<leader>h', ':nohls<cr>')
 
 -- Quicker switching between windows
 map('n', '<C-h>', '<C-w>h', { silent = true })
@@ -33,33 +29,6 @@ map('v', 'Y', 'Ygvh<esc>')
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Copy to system clippboard
--- map('n', "<leader>y", '"+y')
--- map('v', "<leader>y", '"+y')
-
--- Paste from system clippboard
--- map('n', "<leader><C-v>", '"+p')
--- map('v', "<leader><C-v>", '"+p')
-
--- map('n', 'k', example, { silent = true})
-
--- Paste replace visual selection without copying it
--- vnoremap <leader>p "_dP
-
--- Make Y behave like the other capitals
--- nnoremap Y y$
-
--- Keep it centered
--- nnoremap n nzzzv
--- nnoremap N Nzzzv
--- nnoremap J mzJ`z
-
--- Open the current file in the default program (not working on WSL obvi)
--- nmap <leader>x :!xdg-open %<cr><cr>
-
--- Quicky escape to normal mode
--- imap jj <esc>
-
 -- Easy insertion of a trailing ; or , from insert mode
 map('i', ';;', '<esc>A;<esc>')
 map('i', ',,', '<esc>A,<esc>')
@@ -68,16 +37,17 @@ map('i', ',,', '<esc>A,<esc>')
 -- cmap w!! w !sudo tee % > /dev/null
 
 -- nmap <leader>nu :set number! relativenumber!<CR>
-map('n', '<leader>nu', function() vim.opt.number = not vim.opt.number end)
+map('n', '<leader>ul', 
+function() 
+  if vim.o.nu then
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  else
+    vim.opt.number = true
+    vim.opt.relativenumber = true
+  end
+end)
 
 
 -- To map <Esc> to exit terminal-mode
 map('t', '<Esc>', '<C-\\><C-n>')
-
--- Resize the windows more efficiently
-
--- inoremap <leader>+ :vertical resize +5<CR>
--- inoremap <leader>- :vertical resize -5<CR>
-
--- allow Tab to show available command in command line mode
--- map('c', '<Tab>', '<C-L><C-D>')
