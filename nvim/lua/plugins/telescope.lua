@@ -4,6 +4,29 @@
 return {
   lazy = false,
   "nvim-telescope/telescope.nvim", 
+  keys = {
+    {
+      "<leader>ff",
+      function()
+        require("telescope.builtin").find_files()
+      end,
+      desc = "Find within file"
+    },
+    {
+      "<leader>fb",
+      function()
+        require("telescope.builtin").buffers()
+      end,
+      desc = "Find within buffers"
+    },
+    {
+      "<leader>fr",
+      function()
+        require("telescope.builtin").live_grep()
+      end,
+      desc = "Find using grep"
+    }
+  },
   dependencies = {
     "nvim-lua/plenary.nvim",
     {
@@ -55,8 +78,8 @@ return {
 
     -- Mapping for the plugin
     local builtin = require("telescope.builtin")
-    map('n', '<leader>ff', builtin.find_files)
-    map('n', '<leader>fb', builtin.buffers)
-    map('n', '<leader>rg', builtin.live_grep, { remap = true })
+    -- map('n', '<leader>ff', builtin.find_files)
+    -- map('n', '<leader>fb', builtin.buffers)
+    -- map('n', '<leader>rg', builtin.live_grep, { remap = true })
   end
 }

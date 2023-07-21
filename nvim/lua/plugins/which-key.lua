@@ -11,9 +11,6 @@ return {
     require("which-key").register({
       ["<leader>"] = {
         name = "leader",
-        ff = "Find file",
-        fb = "Find buffer",
-        rg = "Rip Grep within files",
         ce = "Edit config file",
         cs = "Reload the congfig",
         ul = "Toggle line numbering"
