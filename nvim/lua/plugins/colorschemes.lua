@@ -8,8 +8,12 @@ return {
   {
     name = "tokyonight",
     "folke/tokyonight.nvim",
-    lazy = true,
     opts = { style = "moon" },
+    lazy = false,
+    -- load the colorscheme here
+    config = function()
+      vim.cmd([[colorscheme tokyonight]])
+    end
   },
 
   -- catppuccin
@@ -21,14 +25,9 @@ return {
 
   -- sonokai
   {
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    lazy = true, -- make sure we load this during startup if it is your main colorscheme
     "sainnhe/sonokai",
     name = "sonokai",
     opts = { style = "andromeda" },
-    -- load the colorscheme here
-    config = function()
-      vim.cmd([[colorscheme sonokai]])
-    end
-  }
+  },
 }

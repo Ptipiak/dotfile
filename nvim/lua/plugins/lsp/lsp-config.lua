@@ -13,10 +13,10 @@ return {
       virtual_text = {
         spacing = 4,
         source = "if_many",
-        prefix = "●",
         -- this will set set the prefix to a function that returns the diagnostics icon based on the severity
         -- this only works on a recent 0.10.0 build. Will be set to "●" when not supported
-        -- prefix = "icons",
+        -- prefix = "●",
+        prefix = "icons",
       },
       severity_sort = true,
     },
@@ -32,7 +32,7 @@ return {
     autoformat = true,
     -- Enable this to show formatters used in a notification
     -- Useful for debugging formatter issues
-    format_notify = false,
+    format_notify = true,
     -- options for vim.lsp.buf.format
     -- `bufnr` and `filter` is handled by the LazyVim formatter,
     -- but can be also overridden when specified

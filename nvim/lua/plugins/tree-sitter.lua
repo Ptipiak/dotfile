@@ -2,6 +2,7 @@
 -- Treesitter
 ----------------------------------------------------------------------------
 return {
+  enabled = false,
   "nvim-treesitter/nvim-treesitter",
   build = ":TSUpdate",
   cmd = { "TSUpdateSync" },

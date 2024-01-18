@@ -7,9 +7,10 @@ vim.opt.backup = false
 vim.opt.backupdir='.nvim/backup//'
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.cmdheight=2
+vim.opt.completeopt= "menu,menuone,noselect"
 vim.opt.confirm = true
 vim.opt.directory='.nvim/swap//'
-vim.opt.expandtab = true -- convert tab to spaces
+vim.opt.expandtab = false -- convert tab to spaces
 vim.opt.exrc = true
 vim.opt.hidden = true
 vim.opt.ignorecase = true
@@ -19,7 +20,7 @@ vim.opt.list = true
 vim.opt.listchars={ tab='›–',eol='¬',trail='¤' }
 vim.opt.mouse = 'a'
 vim.opt.number = true
-vim.opt.redrawtime=10000 -- Allow more time for loading syntax on large files
+vim.opt.redrawtime=400 -- Allow more time for loading syntax on large files
 vim.opt.relativenumber = true -- line number
 vim.opt.scrolloff=4
 vim.opt.secure = true
@@ -41,6 +42,7 @@ vim.opt.updatetime = 1000 -- Reduce time for highlighting other references
 vim.opt.wildmode = { longest=full,full }
 vim.opt.wrap = false
 vim.opt.writebackup = false
+
 
 -- Optional setting for WSL distro
 in_wsl = os.getenv('WSL_DISTRO_NAME') ~= nil

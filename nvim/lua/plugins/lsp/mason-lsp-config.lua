@@ -26,6 +26,26 @@ return {
           on_attach = opts.on_attach,
           capabilities = opts.capabilities,
         }
+      end,
+
+      ["lua_ls"] = function()
+        lspconfig.stylua.setup({
+          on_attach = opts.on_attach,
+          capabilities = opts.capabilities,
+          settings = {
+            Lua = {
+              diagnostics = {
+                globals = { "vim" }
+              },
+              workspace = {
+                library = {
+                  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                  [vim.fn.stdpath("config") .. "/lua"] = true,
+                },
+              },
+            }
+          }
+        })
       end
     })
 
