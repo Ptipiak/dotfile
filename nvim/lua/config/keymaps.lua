@@ -6,7 +6,7 @@ local home = os.getenv('HOME') .. '/'
 
 vim.g.mapleader = ' '
 
-map('n', '<leader>ce', ':edit ~/.config/nvim/<cr>')
+map('n', '<leader>ce', ':cd ~/.config/nvim/<cr>')
 map('n', '<leader>cs', ReloadConfig)
 
 map('n', '<leader>h', ':nohls<cr>')

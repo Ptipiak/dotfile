@@ -10,12 +10,12 @@ vim.opt.cmdheight=2
 vim.opt.completeopt= "menu,menuone,noselect"
 vim.opt.confirm = true
 vim.opt.directory='.nvim/swap//'
-vim.opt.expandtab = false -- convert tab to spaces
+vim.opt.expandtab = true -- convert tab to spaces
 vim.opt.exrc = true
 vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.incsearch = true
-vim.opt.joinspaces = false
+vim.opt.joinspaces = true
 vim.opt.list = true
 vim.opt.listchars={ tab='›–',eol='¬',trail='¤' }
 vim.opt.mouse = 'a'
@@ -25,13 +25,14 @@ vim.opt.relativenumber = true -- line number
 vim.opt.scrolloff=4
 vim.opt.secure = true
 vim.opt.shiftwidth=0 -- if 0 then equal tabstop
-vim.opt.shortmess:append('c')
+vim.opt.shortmess:append('a')
 vim.opt.showmatch = true
 vim.opt.showmode = true
 vim.opt.sidescroll = 8
 vim.opt.signcolumn = "auto:1-4" -- left column sign and size
 vim.opt.smartcase = true
 vim.opt.smarttab = true
+vim.opt.softtabstop = 4 -- smart tab indenting mixing space and tab
 vim.opt.spell = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true

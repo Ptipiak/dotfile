@@ -1,1 +1,6 @@
-return { "folke/neoconf.nvim", cmd = "Neoconf", config = true }
+return {
+  enabled = false,
+  "folke/neoconf.nvim",
+  cmd = "Neoconf",
+  config = true
+}

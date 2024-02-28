@@ -3,16 +3,14 @@
 ----------------------------------------------------------------------------
 
 return {
-
   -- tokyonight
   {
     name = "tokyonight",
     "folke/tokyonight.nvim",
-    opts = { style = "moon" },
     lazy = false,
     -- load the colorscheme here
     config = function()
-      vim.cmd([[colorscheme tokyonight]])
+     vim.cmd([[colorscheme tokyonight-moon]])
     end
   },
 
