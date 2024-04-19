@@ -5,6 +5,10 @@
 - link:
       ~/.config/nvim:
             path: ./nvim
+      ~/.config/yt-dlp/config:
+            path: ./yt-dlp.config
+      ~/.config/alacritty.toml:
+            path: ./alacritty.toml
       ~/.nvmrc:
             path: ./profile/nvmrc
       ~/.config/fish/config.fish:

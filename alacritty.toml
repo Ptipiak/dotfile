@@ -1,5 +1,6 @@
-
 [window]
+opacity = 1.0
+blur = false
 padding = { x = 10, y = 10 }
 dynamic_padding = true
 decorations = "full"
@@ -11,3 +12,20 @@ normal = { family = "Hack Nerd Font Mono", style = "Regular" }
 bold = { family = "Hack Nerd Font Mono", style = "Bold" }
 italic = { family = "Hack Nerd Font Mono", style = "Italic" }
 bold_italic = { family = "Hack Nerd Font Mono", style = "Bold Italic" }
+
+[colors.primary]
+foreground = "#d8d8d8"
+background = "#181818"
+
+[colors.normal]
+black = "#181818"
+red = "#ac4242"
+green = "#90a959"
+yellow = "#f4bf75"
+blue = "#6a9fb5"
+magenta = "#aa759f"
+cyan = "#75b5aa"
+white = "#d8d8d8"
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
