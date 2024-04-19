@@ -5,9 +5,8 @@
 return {
   -- tokyonight
   {
-    name = "tokyonight",
+    lazy = false, -- make sure we load this during startup if it is your main colorscheme
     "folke/tokyonight.nvim",
-    lazy = false,
     -- load the colorscheme here
     config = function()
      vim.cmd([[colorscheme tokyonight-moon]])
@@ -16,9 +15,9 @@ return {
 
   -- catppuccin
   {
+    lazy = true, -- make sure we load this during startup if it is your main colorscheme
     name = "catppuccin",
     "catppuccin/nvim",
-    lazy = true,
   },
 
   -- sonokai
@@ -27,5 +26,13 @@ return {
     "sainnhe/sonokai",
     name = "sonokai",
     opts = { style = "andromeda" },
+  },
+  -- killer-queen
+  {
+    lazy = true,
+    "askfiy/killer-queen",
+    config = function()
+      vim.cmd([[colorscheme killer-queen]])
+    end,
   },
 }

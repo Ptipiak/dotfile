@@ -1,8 +1,8 @@
 ----------------------------------------------------------------------------
 -- indent-blankline better folding and indentation
 ----------------------------------------------------------------------------
----@type LazyPluginSpec
 return {
+  enabled = true,
   "lukas-reineke/indent-blankline.nvim",
   event = "VeryLazy",
   opts = {

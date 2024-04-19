@@ -2,8 +2,8 @@
 -- Notify
 ----------------------------------------------------------------------------
 return {
-  "rcarriga/nvim-notify",
   enabled = true,
+  "rcarriga/nvim-notify",
   lazy = true,
   keys = {
     {
@@ -23,13 +23,18 @@ return {
       return math.floor(vim.o.columns * 0.75)
     end,
   },
-  init = function()
+  config = function(_, opts)
+    notify = require('notify')
+    notify.setup(opts)
+  end,
+  init = function(_, opts)
     -- when noice is not enabled, install notify on VeryLazy
     local Util = require("lazyvim.util")
-    if not Util.has("noice.nvim") then
-      Util.on_very_lazy(function()
-        vim.notify = require("notify")
-      end)
-    end
+    notify = require('notify')
+    -- if not Util.has("noice.nvim") then
+       Util.on_very_lazy(function()
+         vim.notify = notify
+       end)
+    -- end
   end,
 }

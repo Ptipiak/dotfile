@@ -3,11 +3,12 @@
 -- Edit file system in the same fashion as a file buffer.
 ----------------------------------------------------------------------------
 return {
+  enabled = true,
   'stevearc/oil.nvim',
   opts = {},
   -- Optional dependencies
   -- dependencies = { "nvim-tree/nvim-web-devicons" },
-  init = function()
+  config = function(_, opts)
     require('oil').setup({
       columns = {
         -- "icon",

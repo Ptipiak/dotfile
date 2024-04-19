@@ -17,3 +17,15 @@ vim.api.nvim_create_autocmd("TermOpen", {
     vim.wo.wrap = true
   end
 });
+
+-- user_group = vim.api.nvim_create_augroup("user-enter", {})
+-- vim.api.nvim_create_autocmd("VimEnter", {
+--   desc = "Get the parent directory of the first opened file and set it as working directory",
+--   group = user_group,
+--   callback = function()
+--     local path = require('plenary.path')
+--     local file_path = vim.api.nvim_buf_get_name(0)
+--     vim.notify(file_path)
+--     local parent_directory = path.new(file_path)
+--   end
+-- });
