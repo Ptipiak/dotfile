@@ -1,9 +1,12 @@
 return {
+	lazy = false,
+	priority = 20,
   "williamboman/mason-lspconfig.nvim",
   dependencies = {
-    "williamboman/mason.nvim"
+    "williamboman/mason.nvim",
+    "neovim/nvim-lspconfig",
   },
-  config = function(_, otps)
+  config = function(_, opts)
     mason_lspconfig = require("mason-lspconfig")
 
     local opts = {
@@ -29,7 +32,7 @@ return {
       end,
 
       ["lua_ls"] = function()
-        lspconfig.stylua.setup({
+        lspconfig.lua_ls.setup({
           on_attach = opts.on_attach,
           capabilities = opts.capabilities,
           settings = {

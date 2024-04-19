@@ -1,12 +1,8 @@
 return {
-	lazy = true,
-	priority = 30,
+	lazy = false,
+	priority = 10,
 	"neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
-  dependencies = {
-    "williamboman/mason-lspconfig.nvim",
-    "williamboman/mason.nvim",
-  },
   opts = {
     -- options for vim.diagnostic.config()
     diagnostics = {
@@ -43,5 +39,11 @@ return {
       timeout_ms = nil,
     },
   },
-  config = function() end
+  config = function() 
+    local lspconfig = require("lspconfig")
+    local mason = require("mason")
+
+    mason.setup({})
+    lspconfig.lua_ls.setup({})
+  end
 }
