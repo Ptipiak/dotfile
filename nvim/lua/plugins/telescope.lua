@@ -35,12 +35,9 @@ return {
     },
     "nvim-telescope/telescope-file-browser.nvim",
   },
-  init = function()
+  opts = function()
     local actions = require("telescope.actions")
-    local telescope = require('telescope')
-    -- You dont need to set any of these options. These are the default ones. Only
-    -- the loading is important
-    telescope.setup {
+    return {
       defaults = {
         layout_config = {
           vertical = { width = 0.5 }
@@ -67,19 +64,18 @@ return {
         }
       }
     }
-
+  end,
+  init = function(_, opts)
+    local actions = require("telescope.actions")
+    local telescope = require('telescope')
+    -- You dont need to set any of these options. These are the default ones. Only
+    -- the loading is important
+    telescope.setup(opts)
     -- To get fzf loaded and working with telescope, you need to call
     -- load_extension, somewhere after setup function:
     telescope.load_extension('fzf')
     -- To get telescope-file-browser loaded and working with telescope,
     -- you need to call load_extension, somewhere after setup function:
     -- telescope.load_extension "file_browser"
-
-
-    -- Mapping for the plugin
-    local builtin = require("telescope.builtin")
-    -- map('n', '<leader>ff', builtin.find_files)
-    -- map('n', '<leader>fb', builtin.buffers)
-    -- map('n', '<leader>rg', builtin.live_grep, { remap = true })
   end
 }

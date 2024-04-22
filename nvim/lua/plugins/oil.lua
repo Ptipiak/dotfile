@@ -5,22 +5,22 @@
 return {
   enabled = true,
   'stevearc/oil.nvim',
-  opts = {},
+  opts = {
+    columns = {
+      -- "icon",
+      -- "permissions",
+      "size",
+      -- "mtime",
+    },
+    skip_confirm_for_simple_edits = false,
+    view_options = {
+      -- Show files and directories that start with "."
+      show_hidden = true,
+    },
+  },
   -- Optional dependencies
   -- dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function(_, opts)
-    require('oil').setup({
-      columns = {
-        -- "icon",
-        -- "permissions",
-        "size",
-        -- "mtime",
-      },
-      skip_confirm_for_simple_edits = false,
-      view_options = {
-        -- Show files and directories that start with "."
-        show_hidden = true,
-      },
-    })
+    require('oil').setup(opts)
   end
 }

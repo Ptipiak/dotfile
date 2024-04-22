@@ -7,6 +7,7 @@ return {
   tag = "v0.9.1",
   build = ":TSUpdate",
   cmd = { "TSUpdateSync" },
+  priority = 90,
   opts = {
     highlight = {
       enable = true ,

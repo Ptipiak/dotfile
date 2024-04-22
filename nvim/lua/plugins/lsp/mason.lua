@@ -1,7 +1,7 @@
 return {
     lazy = false,
-    priority = 10,
     "williamboman/mason.nvim",
+    priority = 20,
     opts = {
       ensure_installed = {
         "lua_ls",

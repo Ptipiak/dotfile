@@ -1,6 +1,8 @@
 ----------------------------------------------------------------------------
 -- indent-blankline better folding and indentation
 ----------------------------------------------------------------------------
+-- It as a tendency to not behave correctly with the default nvim presentation screen,
+-- most likely came from a `cmd` or a random command execution which take over the UI.
 return {
   enabled = true,
   "lukas-reineke/indent-blankline.nvim",

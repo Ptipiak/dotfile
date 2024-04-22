@@ -29,14 +29,7 @@ map('v', 'Y', 'Ygvh<esc>')
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
--- Easy insertion of a trailing ; or , from insert mode
--- map('i', ';;', '<esc>A;<esc>')
--- map('i', ',,', '<esc>A,<esc>')
-
--- Allows writing to files with root priviledges
--- cmap w!! w !sudo tee % > /dev/null
-
--- nmap <leader>nu :set number! relativenumber!<CR>
+-- Toggle lines numbering
 map('n', '<leader>ul', 
 function() 
   if vim.o.nu then
