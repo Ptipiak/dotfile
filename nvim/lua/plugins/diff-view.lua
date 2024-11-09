@@ -4,6 +4,5 @@
 ----------------------------------------------------------------------------
 return {
 	enabled = true,
-	version = false,
 	"sindrets/diffview.nvim"
 }

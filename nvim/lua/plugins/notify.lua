@@ -27,7 +27,7 @@ return {
     notify = require('notify')
     notify.setup(opts)
   end,
-  init = function(_, opts)
+  build = function()
     -- when noice is not enabled, install notify on VeryLazy
     local Util = require("lazyvim.util")
     notify = require('notify')

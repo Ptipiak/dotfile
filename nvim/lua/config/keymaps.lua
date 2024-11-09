@@ -2,8 +2,6 @@
 -- Key maps
 ----------------------------------------------------------------------------
 
-local home = os.getenv('HOME') .. '/'
-
 vim.g.mapleader = ' '
 
 map('n', '<leader>ce', ':cd ~/.config/nvim/<cr>')

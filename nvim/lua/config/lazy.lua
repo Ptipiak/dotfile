@@ -9,8 +9,8 @@ require("lazy").setup({
     -- add LazyVim and import its plugins
     { "LazyVim/LazyVim" },
     { import = "plugins"},
-    { import = "plugins/lsp"},
     { import = "plugins/completion"},
+    { import = "plugins/lsp"},
   },
   defaults = {
     -- By default, only LazyVim plugins will be lazy-loaded. Your custom plugins will load during startup.
@@ -21,7 +21,9 @@ require("lazy").setup({
     version = false, -- always use the latest git commit
     -- version = "*", -- try installing the latest stable version for plugins that support semver
   },
-  checker = { enabled = true }, -- automatically check for plugin updates
+  checker = {
+    enabled = false -- automatically check for plugin updates
+  },
   performance = {
     rtp = {
       -- disable some rtp plugins
