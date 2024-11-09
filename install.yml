@@ -1,22 +1,19 @@
 - defaults:
-    link:
-      create: true
-- clean: [ '~', '~/.config' ]
+  link:
+    relink: true
+    create: true
+
+- clean: '~'
+
 - link:
-      ~/.config/nvim:
-            path: ./nvim
-      ~/.config/yt-dlp/config:
-            path: ./yt-dlp.config
-      ~/.config/alacritty.toml:
-            path: ./alacritty.toml
-      ~/.nvmrc:
-            path: ./profile/nvmrc
-      ~/.config/fish/config.fish:
-            path: ./profile/fish/config.fish
-      ~/.config/fish/functions/ssh-auto.fish:
-            path: ./profile/fish/functions/ssh-auto.fish
+  ~/.config/nvim: ./nvim
+  ~/.config/yt-dlp.conf: ./yt-dlp.conf
+  ~/.config/alacritty.toml: ./alacritty.toml
+  ~/.nvmrc: ./profile/nvmrc
+  ~/.config/fish/config.fish: ./profile/fish/config.fish
+  ~/.config/fish/functions/*: ./profile/fish/functions/
 
 - shell:
-    - ["git config --global core.editor nvim"]
-    - ["git config --global merge.tool fugitive"]
-    - ["git config --global mergetool.fugitive.cmd 'nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"'"]
+  - ["git config --global core.editor nvim"]
+  - ["git config --global merge.tool fugitive"]
+  - ["git config --global mergetool.fugitive.cmd 'nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"'"]
