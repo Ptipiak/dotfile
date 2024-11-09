@@ -1,12 +1,15 @@
+----------------------------------------------------------------------------
+-- Mason
+----------------------------------------------------------------------------
 return {
+    enabled = true,
     lazy = false,
+    priority = 30,
     "williamboman/mason.nvim",
-    priority = 20,
     opts = {
+      log_level = vim.log.levels.INFO,
       ensure_installed = {
-        "lua_ls",
-        "shfmt",
-        "json-fmt",
+        "lua-language-server"
       },
-    }
+    },
 }
