@@ -4,29 +4,18 @@
 
 -- Make the terminal emulator look better
 terminal_group = vim.api.nvim_create_augroup("terminal", {})
-vim.api.nvim_create_autocmd("TermEnter", {
+vim.api.nvim_create_autocmd("TermOpen", {
   desc = "Make terminal emulator look like a terminal",
   group = terminal_group,
   callback = function()
     local lines = vim.api.nvim_buf_get_lines(0, -2, -1, true)
     -- length(lines)
     vim.api.nvim_win_set_cursor(0, { 4, 1 })
-    vim.wo.number = false
-    vim.wo.relativenumber = false
-    vim.wo.scrolloff=0
-    vim.wo.signcolumn = "auto" -- left column sign and size
-    vim.wo.wrap = true
-  end
-});
-vim.api.nvim_create_autocmd("TermLeave", {
-  desc = "Make terminal emulator look like a terminal",
-  group = terminal_group,
-  callback = function()
-    vim.wo.number = true
-    vim.wo.relativenumber = true
-    vim.wo.scrolloff=4
-    vim.wo.signcolumn = "auto:1-4" -- left column sign and size
-    vim.wo.wrap = false
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    vim.opt_local.scrolloff=0
+    vim.opt_local.signcolumn = "auto" -- left column sign and size
+    vim.opt_local.wrap = true
   end
 });
 
