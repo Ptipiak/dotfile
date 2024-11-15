@@ -1,0 +1,41 @@
+import = [
+  "~/.config/alacritty/colorschemes/base16-default-dark.toml"
+]
+
+[env]
+term = "xterm-256color"
+
+[window]
+opacity = 1.0
+blur = false
+# padding = { x = 1, y = 1 }
+dynamic_padding = true
+decorations = "full"
+option_as_alt = "OnlyRight"
+
+[font]
+size = 16
+normal = { family = "Hack Nerd Font Mono", style = "Regular" }
+bold = { family = "Hack Nerd Font Mono", style = "Bold" }
+italic = { family = "Hack Nerd Font Mono", style = "Italic" }
+bold_italic = { family = "Hack Nerd Font Mono", style = "Bold Italic" }
+builtin_box_drawing = false
+
+# [colors.primary]
+# background = "#2b2d3a"
+# foreground = "#e1e3e4"
+# dim_foreground = "#252630"
+# bright_foreground = "#3f445b"
+#
+# [colors.normal]
+# black = "#333648"
+# red = "#fb617e"
+# green = "#9ed06c"
+# yellow = "#edc763"
+# blue = "#6a9fb5"
+# magenta = "#aa759f"
+# cyan = "#6dcae8"
+# white = "#e1e3e4"
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
