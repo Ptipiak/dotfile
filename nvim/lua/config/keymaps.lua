@@ -27,9 +27,12 @@ map('v', 'Y', 'Ygvh<esc>')
 map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+--- Display diagnostic messages in a floating window
+map('n', '<leader>d', function() vim.diagnostic.open_float({ border = "single" }) end)
+
 -- Toggle lines numbering
-map('n', '<leader>ul', 
-function() 
+map('n', '<leader>ul',
+function()
   if vim.o.nu then
     vim.opt.number = false
     vim.opt.relativenumber = false

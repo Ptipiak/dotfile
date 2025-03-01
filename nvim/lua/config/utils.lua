@@ -12,7 +12,7 @@ vim.env.MYVIMRC = home .. ".config/nvim/init.lua"
 -- Wrapper around the map function
 function _G.map(mode, lhs, rhs, options)
     local default = { noremap = true }
-    local options = options or default
+    options = options or default
     vim.keymap.set(mode, lhs, rhs, options)
 end
 
@@ -30,13 +30,3 @@ function _G.ReloadConfig()
     dofile(vim.env.MYVIMRC)
     vim.notify("Config reloaded")
 end
-
--- Wrapper around the require method
--- Allow to load plugin without an hard crash
--- function _G.load(path)
---   local loaded, response = pcall(require, path)
---   if not loaded then
---     print(path, ' ', 'was not loaded')
---     print('Stack: ', vim.inspect(response))
---   end
--- end
