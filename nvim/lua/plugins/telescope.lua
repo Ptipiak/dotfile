@@ -2,6 +2,7 @@
 -- Telescope
 ----------------------------------------------------------------------------
 return {
+  enable = true,
   lazy = false,
   "nvim-telescope/telescope.nvim", 
   keys = {
@@ -10,21 +11,28 @@ return {
       function()
         require("telescope.builtin").find_files()
       end,
-      desc = "Find within file"
+      desc = "Find within files",
     },
     {
       "<leader>fb",
       function()
         require("telescope.builtin").buffers()
       end,
-      desc = "Find within buffers"
+      desc = "Find within buffers",
     },
     {
       "<leader>fr",
       function()
         require("telescope.builtin").live_grep()
       end,
-      desc = "Find using grep"
+      desc = "Find using grep",
+    },
+    {
+      "<leader>fm",
+      function()
+        require("telescope.builtin").marks()
+      end,
+      desc = "Find marks",
     }
   },
   dependencies = {
@@ -33,7 +41,6 @@ return {
       "nvim-telescope/telescope-fzf-native.nvim",
       build = "make"
     },
-    "nvim-telescope/telescope-file-browser.nvim",
   },
   opts = function()
     local actions = require("telescope.actions")
@@ -41,6 +48,10 @@ return {
       defaults = {
         layout_config = {
           vertical = { width = 0.5 }
+        },
+        file_ignore_patterns = { 
+          "node_modules",
+          "venv"
         },
         mappings = {
           i = {
@@ -55,6 +66,9 @@ return {
         buffers = {
           initial_mode = "normal",
         },
+        marks = {
+          initial_mode = "normal",
+        },
       },
       extensions = {
         fzf = {
@@ -65,7 +79,7 @@ return {
       }
     }
   end,
-  init = function(_, opts)
+  config = function(_, opts)
     local actions = require("telescope.actions")
     local telescope = require('telescope')
     -- You dont need to set any of these options. These are the default ones. Only
@@ -74,8 +88,5 @@ return {
     -- To get fzf loaded and working with telescope, you need to call
     -- load_extension, somewhere after setup function:
     telescope.load_extension('fzf')
-    -- To get telescope-file-browser loaded and working with telescope,
-    -- you need to call load_extension, somewhere after setup function:
-    -- telescope.load_extension "file_browser"
   end
 }

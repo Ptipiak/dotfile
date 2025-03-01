@@ -4,7 +4,7 @@
 return {
   enabled = true,
   "rcarriga/nvim-notify",
-  lazy = true,
+  lazy = false,
   keys = {
     {
       "<leader>un",
@@ -15,7 +15,7 @@ return {
     },
   },
   opts = {
-    timeout = 3000,
+    timeout = 1200,
     max_height = function()
       return math.floor(vim.o.lines * 0.25)
     end,
@@ -24,17 +24,14 @@ return {
     end,
   },
   config = function(_, opts)
-    notify = require('notify')
+    local notify = require('notify')
     notify.setup(opts)
-  end,
-  build = function()
     -- when noice is not enabled, install notify on VeryLazy
     local Util = require("lazyvim.util")
-    notify = require('notify')
     -- if not Util.has("noice.nvim") then
-       Util.on_very_lazy(function()
-         vim.notify = notify
-       end)
+     Util.on_very_lazy(function()
+       vim.notify = notify
+     end)
     -- end
   end,
 }
