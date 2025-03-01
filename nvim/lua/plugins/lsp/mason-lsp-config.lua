@@ -3,7 +3,7 @@
 ----------------------------------------------------------------------------
 return {
   enabled = true,
-	lazy = false,
+  lazy = false,
   priority = 80,
   "williamboman/mason-lspconfig.nvim",
   event = { "BufReadPost", "BufNewFile" },
