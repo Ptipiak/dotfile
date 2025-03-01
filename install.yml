@@ -1,17 +1,19 @@
 - defaults:
-  link:
-    relink: true
-    create: true
+    link:
+      relink: true
+      create: true
 
-- clean: '~'
+# - clean:
+#     '~'
 
 - link:
-  ~/.config/nvim: ./nvim
-  ~/.config/yt-dlp.conf: ./yt-dlp.conf
-  ~/.config/alacritty.toml: ./alacritty.toml
-  ~/.nvmrc: ./profile/nvmrc
-  ~/.config/fish/config.fish: ./profile/fish/config.fish
-  ~/.config/fish/functions/*: ./profile/fish/functions/
+    ~/.config/nvim: ./nvim
+    ~/.config/yt-dlp.conf: ./yt-dlp/yt-dlp.conf
+    ~/.config/alacritty.toml: ./alacritty.toml
+    ~/.config/alacritty/: ./alacritty/
+    ~/.nvmrc: ./profile/nvmrc
+    ~/.config/fish/config.fish: ./profile/fish/config.fish
+    ~/.config/fish/functions/*: ./profile/fish/functions/
 
 - shell:
   - ["git config --global core.editor nvim"]
