@@ -1,0 +1,3 @@
+--output "%(title)s.%(ext)s"
+--sleep-interval 3
+--max-sleep-interval 4
