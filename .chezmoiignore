@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+./README.MD
+<<<<<<< HEAD
+
+# MPV
+/mpv/**/scripts/
+/mpv/**/script-opts/
+
+# Fish
+/fish/**/fish_variables
+||||||| parent of 0c776ae (Chaging directories mod from private to public)
+=======
+./README.MD
+>>>>>>> 0c776ae (Chaging directories mod from private to public)
+||||||| parent of 2288db8 (Adding to .chezmoiignore)
+=======
+
+# MPV
+/mpv/**/scripts/
+/mpv/**/script-opts/
+
+# Fish
+/fish/**/fish_variables
+>>>>>>> 2288db8 (Adding to .chezmoiignore)

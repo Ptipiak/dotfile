@@ -28,7 +28,22 @@ map('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true })
 map('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
 --- Display diagnostic messages in a floating window
-map('n', '<leader>d', function() vim.diagnostic.open_float({ border = "single" }) end)
+map('n', '<leader>d',
+function() vim.diagnostic.open_float({ border = "single" }) end,
+{ desc = "Display diagnostic message in a floating window" })
+
+-- --- TEST ZONE START
+-- -- A little function to switch how to show diagnostics
+-- map('n', '<leader>di',
+-- function()
+--   if not vim.diagnostic.config().virtual_lines then
+--     vim.diagnostic.config({ virtual_lines = { current_line = true } })
+--   else
+--     vim.diagnostic.config({ virtual_lines = true })
+--   end
+-- end
+-- , { desc = 'Toggle showing all diagnostics or just current line' })
+-- --- TEST ZONE END
 
 -- Toggle lines numbering
 map('n', '<leader>ul',
@@ -40,7 +55,7 @@ function()
     vim.opt.number = true
     vim.opt.relativenumber = true
   end
-end)
+end, { desc = 'Toggle the line numbering' })
 
 
 -- To map <Esc> to exit terminal-mode

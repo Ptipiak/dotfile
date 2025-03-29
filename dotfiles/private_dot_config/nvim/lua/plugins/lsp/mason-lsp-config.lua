@@ -12,18 +12,18 @@ return {
     "williamboman/mason.nvim",
   },
   opts = {
-    capabilites = {
-      -- options for vim.diagnostic.config()
-      diagnostics = {
-        underline = true,
-        update_in_insert = false,
-        virtual_text = {
-          spacing = 4,
-          source = "if_many",
-          prefix = "icon",
-        },
-        severity_sort = true,
+    -- options for vim.diagnostic.config()
+    diagnostic = {
+      underline = true,
+      update_in_insert = false,
+      virtual_text = {
+        spacing = 4,
+        source = "if_many",
+        prefix = "",
       },
+      severity_sort = true,
+    },
+    capabilites = {
       -- Enable this to enable the builtin LSP inlay hints on Neovim >= 0.10.0
       -- Be aware that you also will need to properly configure your LSP server to
       -- provide the inlay hints.
@@ -38,15 +38,14 @@ return {
       -- options for vim.lsp.buf.format
       -- `bufnr` and `filter` is handled by the LazyVim formatter,
       -- but can be also overridden when specified
-      format = {
-        formatting_options = nil,
-        timeout_ms = nil,
-      },
+    },
+    format = {
+      formatting_options = nil,
+      timeout_ms = nil,
     },
   },
   config = function(_, opts)
-    vim.lsp.set_log_level("debug")
-    vim.diagnostic.config(opts.diagnostics)
+    vim.diagnostic.config(opts.diagnostic)
     vim.lsp.buf.format(opts.format)
     local mason_lspconfig = require("mason-lspconfig")
     local lspconfig = require("lspconfig")
