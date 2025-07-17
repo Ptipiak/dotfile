@@ -7,6 +7,6 @@ end
 if status is-interactive
   # set -U $fish_greeting
   third_party
-  alias l "ls -al -h"
+  alias l "ls -altr -h"
   source ~/.config/fish/functions/greeting.fish
 end
