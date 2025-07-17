@@ -6,6 +6,14 @@ return {
   enable = true,
   lazy = false,
   'stevearc/oil.nvim',
+  keys = {
+    {
+      "<leader>o",
+      function()
+        require('oil').open()
+      end
+    }
+  },
   opts = {
     columns = {
       "icon",
