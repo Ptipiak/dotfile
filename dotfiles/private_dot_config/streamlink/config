@@ -1,0 +1,11 @@
+player=mpv
+player-args="--profile=live"
+retry-open=3
+player-no-close
+
+# Low lattency stream options
+twitch-low-latency
+hls-segment-stream-data
+hls-playlist-reload-time=live-edge
+stream-segment-threads=3
+hls-live-edge=1
